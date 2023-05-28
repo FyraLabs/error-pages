@@ -511,6 +511,9 @@
         case errorCode >= 400 && errorCode <= 499:
           switch (errorCode) {
             case 400:
+            case 404:
+              whatToDo = "Double-check the URL and try again, or accept the fact that this resource no longer exists";
+              break;
             case 405:
             case 411:
             case 413:
@@ -520,7 +523,7 @@
             case 401:
             case 403:
             case 407:
-              whatToDo = "Please check your authorization data";
+              whatToDo = "Please check your credentials and try again";
               break;
             case 404:
               whatToDo = "Please double-check the URL and try again";
@@ -530,18 +533,34 @@
               whatToDo = "¯\\_(ツ)_/¯";
               break;
             case 418:
-              whatToDo = "¯\\_(ツ)_/¯ want a cuppa?";
+              whatToDo = "want a cuppa?";
+              break;
+            case 429:
+              whatToDo = "Stop spamming. Be quiet for several hours.";
+              break;
+            case 451:
+              whatToDo = "Ask our lawyers, or ask your government to stop censoring the Internet.\n\nAlternatively, you can try accessing this resource using a VPN.";
               break;
           }
 
-          setErrorDescription(
-            `<span data-l10n>${message}</span> (<span data-l10n>client-side error</span>)`
-          );
-          setCardState(cards.$client, { isError: true }, message);
-          setCardState(cards.$internet, { isOk: true }, "Working");
-          setCardState(cards.$fyra, { isOk: true }, "Working");
-          setCardState(cards.$application, { isOk: true }, "Working");
-          break;
+          if (errorCode === 451) {
+
+            setCardState(cards.$client, { isOk: true }, "Working");
+            setCardState(cards.$internet, { isWarning: true, isOk: false }, "Blocked");
+            setCardState(cards.$fyra, { isError: true }, "Blocked");
+            setCardState(cards.$application, { isOk: true }, "Working");
+            break;
+          } else {
+            setErrorDescription(
+              `<span data-l10n>${message}</span> (<span data-l10n>client-side error</span>)`
+            );
+            setCardState(cards.$client, { isError: true }, message);
+            setCardState(cards.$internet, { isOk: true }, "Working");
+            setCardState(cards.$fyra, { isOk: true }, "Working");
+            setCardState(cards.$application, { isOk: true }, "Working");
+            break;
+          }
+
 
         case errorCode >= 500 && errorCode <= 599:
           setErrorDescription(

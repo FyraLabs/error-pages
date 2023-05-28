@@ -101,8 +101,12 @@ pages:
     description: Attempt to brew coffee with a teapot is not supported
 
   429:
-    message: Too Many Requests
+    message: Rate-limited
     description: Too many requests in a given amount of time
+
+  451:
+    message: Unavailable For Legal Reasons
+    description: Resource access is blocked for legal reasons
 
   500:
     message: Internal Server Error
