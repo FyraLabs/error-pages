@@ -50,15 +50,15 @@ pages:
 
   401:
     message: Unauthorized
-    description: The requested page needs a username and a password
+    description: Authentication is required to access this resource
 
   403:
     message: Forbidden
-    description: Access is forbidden to the requested page
+    description: You are not allowed to access this resource
 
   404:
     message: Not Found
-    description: The server can not find the requested page
+    description: A cat ran off with this page
 
   405:
     message: Method Not Allowed
@@ -66,19 +66,19 @@ pages:
 
   407:
     message: Proxy Authentication Required
-    description: You must authenticate with a proxy server before this request can be served
+    description: This resource is internal-only. If you have received this message in error, contact Operations.
 
   408:
     message: Request Timeout
-    description: The request took longer than the server was prepared to wait
-
+    description: Your device took too long to connect
+  
   409:
     message: Conflict
     description: The request could not be completed because of a conflict
 
   410:
     message: Gone
-    description: The requested page is no longer available
+    description: The requested resource is no longer available
 
   411:
     message: Length Required
@@ -98,11 +98,11 @@ pages:
 
   418:
     message: I'm a teapot
-    description: Attempt to brew coffee with a teapot is not supported
+    description: Attempt to brew coffee with a teapot is not allowed
 
   429:
     message: Rate-limited
-    description: Too many requests in a given amount of time
+    description: Too many requests, try again later
 
   451:
     message: Unavailable For Legal Reasons
@@ -110,15 +110,15 @@ pages:
 
   500:
     message: Internal Server Error
-    description: The server met an unexpected condition
+    description: We hit a snag. Try again in a few seconds.
 
   502:
     message: Bad Gateway
-    description: The server received an invalid response from the upstream server
+    description: Your request couldn't make it to us. Try again in a few minutes.
 
   503:
     message: Service Unavailable
-    description: The server is temporarily overloading or down
+    description: Try again in a few minutes. If the problem persists check status.fyralabs.com
 
   504:
     message: Gateway Timeout
